@@ -21,6 +21,14 @@ st.write(df_cars)
 
 '''
 '''
+continent_car = st.radio("Which continent of origin would you like to explore?", ('US', 'Europe', 'Japan'))
+if continent_car == 'US':
+    df_cars = df_cars[df_cars.continent == ' US.']
+if continent_car == 'Europe':
+    df_cars = df_cars[df_cars.continent == ' Europe.']
+if continent_car == 'Japan':
+    df_cars = df_cars[df_cars.continent == ' Japan.']
+
 
 cars_scatter = sns.scatterplot(data=df_cars, x='hp', y='cubicinches')
 plt.xlabel('Horsepower')
@@ -33,19 +41,12 @@ st.pyplot(cars_scatter.figure)
 '''
 '''
 
-df_cars_corr = df_cars.corr()
-cars_heatmap = sns.heatmap(data = df_cars_corr, cmap="RdYlGn", vmax=1, vmin=-1, center=0, linewidths=.5)
+cars_heatmap = sns.heatmap(data = df_cars.corr(), cmap="RdYlGn", vmax=1, vmin=-1, center=0, linewidths=.5)
 plt.title('Corelation between different cars features')
 st.pyplot(cars_heatmap.figure)
 
-'''Car power and mpg consumption are negatively correlated: the more powerfull is the car, the more important consumption is.
-Car weight and power are positively correlated : the heavier a car is, the most powerfull it will be.'''
 '''
-- des boutons doivent être présents pour pouvoir filtrer les résultats
-    par région (US / Europe / Japon).
-'''
-
-
-'''
-- l'application doit être disponible sur la plateforme de partage.
+Car power and mpg consumption are negatively correlated: the more powerfull is the car, the more important consumption is.
+Car weight and power are positively correlated : the heavier a car is, the most powerfull it will be.
+These correlations are stronger for american cars.
 '''
